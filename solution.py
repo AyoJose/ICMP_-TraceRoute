@@ -123,10 +123,10 @@ def get_route(hostname):
                 type, code, checksum, pid, sequence = struct.unpack('bbHHh', icmp_header)
                 #Fill in end
 
-                try: #try to fetch the hostname
+               # try: #try to fetch the hostname
                     #Fill in start
                     #Fill in end
-                except herror:   #if the host does not provide a hostname
+                #except herror:   #if the host does not provide a hostname
                     #Fill in start
                     #Fill in end
 
