@@ -81,7 +81,7 @@ def get_route(hostname):
             #Fill in start
             # Make a raw socket named mySocket
             #icmp = socket.getprotobyname("icmp")
-            mySocket = socket.socket(AF_INET, SOCK_RAW, gethostbyname('icmp'))
+            mySocket = socket.socket(AF_INET, SOCK_RAW, getprotobyname('icmp'))
             mySocket.bind(("", 12000))
             #Fill in end
 
@@ -123,7 +123,7 @@ def get_route(hostname):
                 type, code, checksum, pid, sequence = struct.unpack('bbHHh', icmp_header)
                 #Fill in end
 
-               # try: #try to fetch the hostname
+                #try: #try to fetch the hostname
                     #Fill in start
                     #Fill in end
                 #except herror:   #if the host does not provide a hostname
@@ -137,13 +137,17 @@ def get_route(hostname):
                     bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-                    tracelist2 = tracelist2 + ('%d rtt=%.0f ms %s' %(ttl,(timeReceived - t)*1000, addr[0]))
+                    tracelist1 = ('%d, %.0fms, %s' %(ttl,(timeReceived - t)*1000, addr[0]))
+                    print (tracelist1)
+                    tracelist2 = tracelist2 + tracelist1
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    tracelist2 = tracelist2 +('%d rtt=%.0f ms %struct' %(ttl, (timeReceived - t) * 1000, addr[0]))
+                    tracelist1 = ('%d, %.0fms, %struct' %(ttl, (timeReceived - t) * 1000, addr[0]))
+                    print (tracelist1)
+                    tracelist2 = tracelist2 + tracelist1
                     #You should add your responses to your lists here
                     #Fill in end
                 elif types == 0:
@@ -151,7 +155,10 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    tracelist2 = tracelist2 +('%d rtt=%.0f ms %s' %(ttl, (timeReceived - timeSent) *1000, addr[0]))
+
+                    tracelist1 = ('%d, %.0fms, %s' %(ttl, (timeReceived - timeSent) *1000, addr[0]))
+                    print(tracelist1)
+                    tracelist2 = tracelist2 + tracelist1
                     return
                     #Fill in end
                 else:
