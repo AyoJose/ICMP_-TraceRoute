@@ -4,8 +4,7 @@ import struct
 import time
 import select
 import binascii
-import socket 
-from socket import gethostbyname
+from socket import *
 
 
 ICMP_ECHO_REQUEST = 8
