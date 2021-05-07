@@ -5,7 +5,6 @@ import struct
 import time
 import select
 import binascii
-import socket
 
 
 ICMP_ECHO_REQUEST = 8
@@ -81,7 +80,7 @@ def get_route(hostname):
 
             #Fill in start
             # Make a raw socket named mySocket
-            icmp = socket.getprotobyname("icmp")
+            icmp = getprotobyname("icmp")
             mySocket = socket.socket(AF_INET, SOCK_RAW,icmp)
             mySocket.bind(("", 12000))
             #Fill in end
