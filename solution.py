@@ -121,7 +121,7 @@ def get_route(hostname):
 
                 try:
                     #Fill in start
-                    host_name = Socket.gethostname() 
+                    host_name = socket.gethostname() 
                     #Fill in end
                 except herror:   
                     host_name = ('hostname not returnable')  
