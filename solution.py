@@ -5,6 +5,7 @@ import struct
 import time
 import select
 import binascii
+import socket
 
 
 ICMP_ECHO_REQUEST = 8
