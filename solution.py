@@ -6,6 +6,7 @@ import select
 import binascii
 from socket import *
 from socket import socket
+from socket import gethostname
 
 
 ICMP_ECHO_REQUEST = 8
