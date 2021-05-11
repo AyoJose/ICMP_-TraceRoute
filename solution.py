@@ -47,15 +47,15 @@ def build_packet():
     #Fill in end
     # So the function ending should look like this
     myChecksum = 0 
-	pid = os.getpid() & 0xFFFF
-	header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, 0, myChecksum,pid,1)
+    pid = os.getpid() & 0xFFFF
+    header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, 0, myChecksum,pid,1)
     data = struct.pack('d' time.time())
     myChecksum = checksum(header+data)	
-	if sys.platform == 'darwin': 
-	    myChecksum = socket.htons(myChecksum) & oxffff
+    if sys.platform == 'darwin': 
+        myChecksum = socket.htons(myChecksum) & oxffff
 	
-	else: 
-	    myChecksum = htons(myChecksum)
+    else: 
+        myChecksum = htons(myChecksum)
 	
  
     packet = header + data
@@ -151,4 +151,3 @@ def get_route(hostname):
          
             finally:
                 mySocket.close()
-
