@@ -98,7 +98,7 @@ def get_route(hostname):
                 if timeLeft <= 0:
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
-					print('*** Request timed out.')
+                    print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
             except timeout:
@@ -107,7 +107,7 @@ def get_route(hostname):
             else:
                 #Fill in start
                 #Fetch the icmp type from the IP packet
-				icmp_header = recvPacket[20:28] 
+                icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
                 try: #try to fetch the hostname
