@@ -72,7 +72,7 @@ def get_route(hostname):
  
             #Fill in start
             # Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW, getprotobyname('ICMP'))			
+            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW, socket.getprotobyname('ICMP'))			
             mySocket.bind(('',12000)); 
             #Fill in end
  
