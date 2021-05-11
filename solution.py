@@ -5,6 +5,7 @@ import struct
 import time
 import select
 import binascii
+
  
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
@@ -101,7 +102,7 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-            except TIMEOUT:
+            except Timeout:
                 continue
  
             else:
@@ -110,12 +111,13 @@ def get_route(hostname):
                 icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                #try: #try to fetch the hostname
-                host_Name = 'hello' 
+                try: #try to fetch the hostname
+                host_Name = socket.gethostbyname() 
                     #Fill in start
                     #Fill in end
-                #except herror:   #if the host does not provide a hostname
+                except herror:   #if the host does not provide a hostname
                     #Fill in start
+				host_Name = 'hostname not returnable' 
                     #Fill in end
  
                 if types == 11:
