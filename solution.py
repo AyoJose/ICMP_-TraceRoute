@@ -76,7 +76,7 @@ def get_route(hostname):
             mySocket.bind(('',12000)); 
             #Fill in end
  
-            mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
+            mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
 
             try:
