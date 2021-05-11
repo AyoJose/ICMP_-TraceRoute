@@ -110,11 +110,11 @@ def get_route(hostname):
                 icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                try: #try to fetch the hostname
-                    host_Name = 'hello' 
+                #try: #try to fetch the hostname
+                host_Name = 'hello' 
                     #Fill in start
                     #Fill in end
-                except herror:   #if the host does not provide a hostname
+                #except herror:   #if the host does not provide a hostname
                     #Fill in start
                     #Fill in end
  
