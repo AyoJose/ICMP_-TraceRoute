@@ -49,7 +49,7 @@ def build_packet():
     myChecksum = 0 
     pid = os.getpid() & 0xFFFF
     header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, 0, myChecksum,pid,1)
-    data = struct.pack('d',time.time())
+    data = struct.pack('d', time.time())
     myChecksum = checksum(header+data)	
     if sys.platform == 'darwin': 
         myChecksum = socket.htons(myChecksum) & oxffff
@@ -108,10 +108,10 @@ def get_route(hostname):
                 #Fill in start
                 #Fetch the icmp type from the IP packet
 				icmp_header = recvPacket[20:28] 
-				type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
+                type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
                 try: #try to fetch the hostname
-				host_Name = 'hello' 
+                host_Name = 'hello' 
                     #Fill in start
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
@@ -124,7 +124,7 @@ def get_route(hostname):
                     bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-					print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
 				
                     #Fill in end
                 elif types == 3:
@@ -132,21 +132,21 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here 
-					print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-					print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     #Fill in end
-					return
+                    return
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
-					print('error)
-					break
+                    print('error)
+                    break
                     #Fill in end
          
             finally:
