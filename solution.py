@@ -11,6 +11,7 @@ ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
 TIMEOUT = 2.0
 TRIES = 2
+
 # The packet that we shall send to each router along the path is the ICMP echo
 # request packet, which is exactly what we had used in the ICMP ping exercise.
 # We shall use the same packet that we built in the Ping exercise
@@ -66,15 +67,17 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
+	host_Name = 'hostname not returnable'
  
     for ttl in range(1,MAX_HOPS):
+
         for tries in range(TRIES):
             destAddr = socket.gethostbyname(hostname)
  
             #Fill in start
             # Make a raw socket named mySocket
             mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW, socket.getprotobyname('ICMP'))			
-            mySocket.bind(('',12000)); 
+  
             #Fill in end
  
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
@@ -88,7 +91,7 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    tracelist1.append("* * * Request timed out.")
+                    #tracelist1.append("* * * Request timed out.")
                     print('*** Request timed out.') 
                     #Fill in start
                     #You should add the list above to your all traces list
@@ -97,7 +100,7 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
-                    tracelist1.append("* * * Request timed out.")
+                    #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
@@ -111,13 +114,13 @@ def get_route(hostname):
                 icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                try: #try to fetch the hostname
-                    host_Name = socket.gethostbyname() 
+                #try: #try to fetch the hostname
+                    #host_Name = socket.gethostbyname() 
                     #Fill in start
                     #Fill in end
-                except herror:   #if the host does not provide a hostname
+                #except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    host_Name = 'hostname not returnable' 
+                    #host_Name = 'hostname not returnable' 
                     #Fill in end
  
                 if types == 11:
