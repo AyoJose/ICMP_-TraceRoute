@@ -1,17 +1,3 @@
-import socket
-import os
-import sys
-import struct
-import time
-import select
-import binascii
-
- 
-ICMP_ECHO_REQUEST = 8
-MAX_HOPS = 30
-TIMEOUT = 2.0
-TRIES = 2
-# The packet that we shall send to each router along the path is the ICMP echo
 # request packet, which is exactly what we had used in the ICMP ping exercise.
 # We shall use the same packet that we built in the Ping exercise
  
@@ -102,7 +88,7 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-            except TIMEOUT:
+            except timeout = 1:
                 continue
  
             else:
@@ -112,12 +98,12 @@ def get_route(hostname):
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
                 try: #try to fetch the hostname
-                    host_Name = socket.gethostbyname() 
+                host_Name = socket.gethostbyname() 
                     #Fill in start
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    host_Name = 'hostname not returnable' 
+				host_Name = 'hostname not returnable' 
                     #Fill in end
  
                 if types == 11:
