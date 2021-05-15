@@ -105,7 +105,7 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-            except timeout:
+            except:
                 print('hit timeout exception')
                 continue
  
