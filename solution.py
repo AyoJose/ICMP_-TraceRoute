@@ -123,7 +123,7 @@ def get_route(hostname):
                     #host_Name = 'hostname not returnable' 
                     #Fill in end
  
-                if types == 11:
+                if type == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 +
                     bytes])[0]
@@ -132,14 +132,14 @@ def get_route(hostname):
                     print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
 				
                     #Fill in end
-                elif types == 3:
+                elif type == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here 
                     print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #Fill in end
-                elif types == 0:
+                elif type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
