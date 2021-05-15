@@ -105,7 +105,7 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-            except timeout:
+            except:
                 continue
  
             else:
@@ -145,6 +145,7 @@ def get_route(hostname):
                     #Fill in start
                     print('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
+		    
                     #Fill in end
                     return
                 else:
