@@ -1,4 +1,5 @@
 from socket import * 
+from socket import gethostbyname
 import os
 import sys
 import struct
