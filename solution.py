@@ -1,4 +1,4 @@
-from socket import * 
+import socket
 from socket import gethostbyname
 import os
 import sys
