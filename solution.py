@@ -1,11 +1,11 @@
-import socket
+from socket import * 
 import os
 import sys
 import struct
 import time
 import select
 import binascii
-
+import math
  
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
@@ -67,17 +67,15 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
-    host_Name = 'hostname not returnable'
  
     for ttl in range(1,MAX_HOPS):
 
         for tries in range(TRIES):
             destAddr = socket.gethostbyname(hostname)
- 
+            icmp = getprotobyname("icmp") 
             #Fill in start
             # Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW, socket.getprotobyname('ICMP'))			
-  
+            mySocket = socket(AF_INET,SOCK_RAW,icmp)			
             #Fill in end
  
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
@@ -91,7 +89,7 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    #tracelist1.append("* * * Request timed out.")
+                    tracelist1.append("* * * Request timed out.")
                     print('*** Request timed out.') 
                     #Fill in start
                     #You should add the list above to your all traces list
@@ -105,7 +103,7 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-            except Exception:
+            except timeout:
                 continue
  
             else:
@@ -114,15 +112,15 @@ def get_route(hostname):
                 icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                #try: #try to fetch the hostname
-                    #host_Name = socket.gethostbyname() 
+                try:
+                    host_Name = socket.gethostbyaddr(destAddr) 
                     #Fill in start
                     #Fill in end
-                #except herror:   #if the host does not provide a hostname
+                except host_Name[0] == []:   #if the host does not provide a hostname
                     #Fill in start
-                    #host_Name = 'hostname not returnable' 
+                    host_Name = 'hostname not returnable' 
                     #Fill in end
- 
+			
                 if type == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 +
