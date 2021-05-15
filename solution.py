@@ -73,7 +73,7 @@ def get_route(hostname):
 
         for tries in range(TRIES):
             destAddr = socket.gethostbyname(hostname)
-            icmp = getprotobyname("icmp") 
+            icmp = socket.getprotobyname("icmp") 
             #Fill in start
             # Make a raw socket named mySocket
             mySocket = socket(AF_INET,SOCK_RAW,icmp)			
