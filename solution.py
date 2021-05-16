@@ -125,14 +125,14 @@ def get_route(hostname):
             icmp_header = recvPacket[20:28] 
             type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                #try:
-                    #host_Name = socket.gethostbyaddr(destAddr) 
+            
+            host_Name = socket.gethostbyaddr(destAddr) 
                     #Fill in start
 			
                     #Fill in end
-                #except host_Name[0] == []:   #if the host does not provide a hostname
+            if host_Name[0] == []:   #if the host does not provide a hostname
                     #Fill in start
-                    #host_Name = 'hostname not returnable' 
+                host_Name = 'hostname not returnable' 
                     #Fill in end
 			
             if type == 11:
@@ -142,7 +142,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 3 ') 
-                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))			
+                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))			
                     #Fill in end
             elif type == 3:
                 bytes = struct.calcsize("d")
@@ -151,7 +151,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here 
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 4 ') 
-                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))
+                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))
                     #Fill in end
             elif type == 0:
                 bytes = struct.calcsize("d")
@@ -160,7 +160,7 @@ def get_route(hostname):
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
                 print('debug part 5 ')
-                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0])) 
+                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))
                     #Fill in end
                     #return
             else:
