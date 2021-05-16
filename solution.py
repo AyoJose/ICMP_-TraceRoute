@@ -115,7 +115,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #Fill in end
                     #print('debug part 2.5') 
-            except timeout:
+            except:
                 continue
  
             else:
