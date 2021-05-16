@@ -95,28 +95,34 @@ def get_route(hostname):
                 print(whatready) 		
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    tracelist1.append("* * * Request timed out.")
+                    tracelist1=(tries,'*',"* * * Request timed out.")
                     #print('*** Request timed out.') 
                     #Fill in start
+		    tracelist2 = tracelist2.append(tracelist1) 
                     #You should add the list above to your all traces list
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
-                print('debug part 2') 
-                print(timeLeft) 
+                #print('debug part 2') 
+                #print(timeLeft) 
                 if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
-                    print('*** Request timed out.')
+                    tracelist1=(tries,'*',"* * * Request timed out.")
+                    #print('*** Request timed out.') 
+                    #Fill in start
+		    tracelist2 = tracelist2.append(tracelist1) 
+                    #print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-                    print('debug part 2.5') 
+                    #print('debug part 2.5') 
             except Exception:
                 print('debug 2.8') 
                 continue
  
             else:
+		print('2.9') 
                 #Fill in start
                 #Fetch the icmp type from the IP packet
                 icmp_header = recvPacket[20:28] 
