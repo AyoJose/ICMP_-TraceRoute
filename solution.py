@@ -69,7 +69,7 @@ def get_route(hostname):
     print('starting here;')
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
- 
+    icmp = socket.getprotobyname('icmp') 
     for ttl in range(1,MAX_HOPS):
         print('for loop starts here') 
         tracelist1 = [] 
@@ -77,7 +77,7 @@ def get_route(hostname):
             destAddr = socket.gethostbyname(hostname) 
             #Fill in start
             # Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW,socket.getprotobyname("icmp")
+            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW,icmp)
             #Fill in end
  
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
