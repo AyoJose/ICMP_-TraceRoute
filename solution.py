@@ -83,47 +83,47 @@ def get_route(hostname):
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
             print('debug part 1' ) 
-            try:
-                d = build_packet()
+            #try:
+            d = build_packet()
 		#hello = 5 
-                mySocket.sendto(d, (hostname, 0))
-                t= time.time()
-                startedSelect = time.time()
-                whatReady = 10# select.select([mySocket], [], [], timeLeft)
+            mySocket.sendto(d, (hostname, 0))
+            t= time.time()
+            startedSelect = time.time()
+            whatReady = 10# select.select([mySocket], [], [], timeLeft)
                 #print(whatready) 		
-                howLongInSelect = 10 #(time.time() - startedSelect)
-                if whatReady[0] == []: # Timeout
+            howLongInSelect = 10 #(time.time() - startedSelect)
+            if whatReady[0] == []: # Timeout
                     #tracelist1=(tries,'*',"* * * Request timed out.")
-                    print('*** Request timed out.') 
+                print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #You should add the list above to your all traces list
                     #Fill in end
-                recvPacket, addr = mySocket.recvfrom(1024)
-                timeReceived = time.time()
-                timeLeft = 20 #timeLeft - howLongInSelect
+            recvPacket, addr = mySocket.recvfrom(1024)
+            timeReceived = time.time()
+            timeLeft = 20 #timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
-                if timeLeft <= 0:
+            if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #tracelist1=(tries,'*',"* * * Request timed out.")
-                    print('*** Request timed out.') 
+                 print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
                     #print('debug part 2.5') 
-            except:
-                continue
+            #except:
+                #continue
  
-            else:
-                print('2.9') 
+            #else:
+            print('2.9') 
                 #Fill in start
                 #Fetch the icmp type from the IP packet
-                icmp_header = recvPacket[20:28] 
-                type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
+            icmp_header = recvPacket[20:28] 
+            type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
                 #try:
                     #host_Name = socket.gethostbyaddr(destAddr) 
@@ -135,40 +135,40 @@ def get_route(hostname):
                     #host_Name = 'hostname not returnable' 
                     #Fill in end
 			
-                if type == 11:
-                    bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
+            if type == 11:
+                bytes = struct.calcsize("d")
+                timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
-                    print('debug part 3 ') 
-                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))			
+                print('debug part 3 ') 
+                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))			
                     #Fill in end
-                elif type == 3:
-                    bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
+            elif type == 3:
+                bytes = struct.calcsize("d")
+                timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here 
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
-                    print('debug part 4 ') 
-                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))
+                print('debug part 4 ') 
+                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))
                     #Fill in end
-                elif type == 0:
-                    bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
+            elif type == 0:
+                bytes = struct.calcsize("d")
+                timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    print('debug part 5 ')
-                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0])) 
+                print('debug part 5 ')
+                print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0])) 
                     #Fill in end
                     #return
-                else:
+            else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    print('error')
-                    print('debug part 6 ') 
-                    break
+                print('error')
+                print('debug part 6 ') 
+                break
                     #Fill in end
          
             finally:
