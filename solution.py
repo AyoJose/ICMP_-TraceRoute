@@ -108,9 +108,9 @@ def get_route(hostname):
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
-		    print('debug part 2.5') 
+                    print('debug part 2.5') 
             except:
-		print('debug 2.8') 
+                print('debug 2.8') 
                 continue
  
             else:
