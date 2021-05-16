@@ -139,7 +139,7 @@ def get_route(hostname):
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 3 ') 
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
-                tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
+                tracelist1 = [str(tries),str(timeReceived-t),str(addr[0]),str(host_Name)] #This is your list to use when iterating through each trace 
                 tracelist2.extend(tracelist1) #This is your list to contain all traces	
 		
                     #Fill in end
@@ -151,7 +151,7 @@ def get_route(hostname):
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 4 ') 
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
-                tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
+                tracelist1 =[str(tries),str(timeReceived-t),str(addr[0]),str(host_Name)] #This is your list to use when iterating through each trace 
                 tracelist2.extend(tracelist1) #This is your list to contain all traces	
 		          #Fill in end
             elif type == 0:
@@ -162,7 +162,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here and return your list if your destination IP is met
                 print('debug part 5 ')
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
-                tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
+                tracelist1 = [str(tries),str(timeReceived-t),str(addr[0]),str(host_Name)] #This is your list to use when iterating through each trace 
                 tracelist2.extend(tracelist1) #This is your list to contain all traces	
 				
 		#Fill in end
