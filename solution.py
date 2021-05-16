@@ -93,7 +93,8 @@ def get_route(hostname):
             print('debug in between') 		
             howLongInSelect =(time.time() - startedSelect)
             if whatReady[0] == []: # Timeout
-                    #tracelist1=(tries,'*',"* * * Request timed out.")
+                tracelist1=(tries,'*',"* * * Request timed out.")
+                break		
                 print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
@@ -101,14 +102,15 @@ def get_route(hostname):
                     #Fill in end
             recvPacket, addr = mySocket.recvfrom(1024)
             timeReceived = time.time()
-            timeLeft = 20 #timeLeft - howLongInSelect
+            timeLeft = timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
             if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
-                    #tracelist1=(tries,'*',"* * * Request timed out.")
-                 print('*** Request timed out.') 
+                 tracelist1=(tries,'*',"* * * Request timed out.")
+                 break
+		#print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #print('*** Request timed out.')
@@ -126,7 +128,7 @@ def get_route(hostname):
             type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
             try: 
-                host_Name = socket.gethostbyaddr(destAddr) 
+                host_Name = socket.gethostbyaddr(destAddr)[0] 
             except: 
                 host_Name = 'hostname not returnable' 
                     #Fill in end
@@ -166,7 +168,7 @@ def get_route(hostname):
                 tracelist2.extend(tracelist1) #This is your list to contain all traces	
 				
 		#Fill in end
-                    #return
+                    return
             else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
