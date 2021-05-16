@@ -138,7 +138,10 @@ def get_route(hostname):
                     #You should add your responses to your lists here
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 3 ') 
-                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))			
+                print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
+                tracelist1 = [tries, (timeReceived-t), addr[0],host_name] #This is your list to use when iterating through each trace 
+                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+		
                     #Fill in end
             elif type == 3:
                 bytes = struct.calcsize("d")
@@ -147,8 +150,10 @@ def get_route(hostname):
                     #You should add your responses to your lists here 
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                 print('debug part 4 ') 
-                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))
-                    #Fill in end
+                print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
+                tracelist1 = [tries, (timeReceived-t), addr[0],host_name] #This is your list to use when iterating through each trace 
+                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+		          #Fill in end
             elif type == 0:
                 bytes = struct.calcsize("d")
                 timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
@@ -156,8 +161,11 @@ def get_route(hostname):
                     #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
                 print('debug part 5 ')
-                print('%d rtt= %.0f ms %s %s' %(ttl, (timeReceived - t)*1000, addr[0],host_Name))
-                    #Fill in end
+                print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
+                tracelist1 = [tries, (timeReceived-t), addr[0],host_name] #This is your list to use when iterating through each trace 
+                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+				
+		#Fill in end
                     #return
             else:
                     #Fill in start
