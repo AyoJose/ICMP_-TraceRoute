@@ -122,7 +122,7 @@ def get_route(hostname):
                 continue
  
             else:
-		print('2.9') 
+                print('2.9') 
                 #Fill in start
                 #Fetch the icmp type from the IP packet
                 icmp_header = recvPacket[20:28] 
