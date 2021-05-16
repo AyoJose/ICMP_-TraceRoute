@@ -66,12 +66,15 @@ def build_packet():
  
 def get_route(hostname):
     timeLeft = TIMEOUT
+    print('starting here;')
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
  
     for ttl in range(1,MAX_HOPS):
+        print('for loop starts here') 
         tracelist1 = [] 
         for tries in range(TRIES):
+            print('for loop starts here1') 
             destAddr = socket.gethostbyname(hostname)
             icmp = socket.getprotobyname("icmp") 
             #Fill in start
