@@ -93,7 +93,7 @@ def get_route(hostname):
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
                     tracelist1.append("* * * Request timed out.")
-                    print('*** Request timed out.') 
+                    #print('*** Request timed out.') 
                     #Fill in start
                     #You should add the list above to your all traces list
                     #Fill in end
