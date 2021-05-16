@@ -87,7 +87,8 @@ def get_route(hostname):
             mySocket.settimeout(TIMEOUT)
             print('debug part 1' ) 
             try:
-                d = build_packet()
+                #d = build_packet()
+		hello = 5 
                 #mySocket.sendto(d, (hostname, 0))
                 #t= time.time()
                 #startedSelect = time.time()
@@ -117,7 +118,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #Fill in end
                     #print('debug part 2.5') 
-            except Exception:
+            except timeout:
                 print('debug 2.8') 
                 continue
  
