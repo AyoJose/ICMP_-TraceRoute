@@ -140,7 +140,7 @@ def get_route(hostname):
                 print('debug part 3 ') 
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
                 tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
-                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+                tracelist2.extend(tracelist1) #This is your list to contain all traces	
 		
                     #Fill in end
             elif type == 3:
@@ -152,7 +152,7 @@ def get_route(hostname):
                 print('debug part 4 ') 
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
                 tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
-                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+                tracelist2.extend(tracelist1) #This is your list to contain all traces	
 		          #Fill in end
             elif type == 0:
                 bytes = struct.calcsize("d")
@@ -163,7 +163,7 @@ def get_route(hostname):
                 print('debug part 5 ')
                 print('%d rtt= %.0f ms %s %s' %(tries, (timeReceived - t)*1000, addr[0],host_Name))
                 tracelist1 = [tries, (timeReceived-t), addr[0],host_Name] #This is your list to use when iterating through each trace 
-                tracelist2 = tracelist2.append(tracelist1) #This is your list to contain all traces	
+                tracelist2.extend(tracelist1) #This is your list to contain all traces	
 				
 		#Fill in end
                     #return
