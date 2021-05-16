@@ -82,7 +82,7 @@ def get_route(hostname):
  
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
-
+            print('debug part 1' ) 
             try:
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
@@ -99,6 +99,7 @@ def get_route(hostname):
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
+		print('debug part 2') 
                 if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
@@ -130,7 +131,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here
                     tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
-				
+		    print('debug part 3 ') 	
                     #Fill in end
                 elif type == 3:
                     bytes = struct.calcsize("d")
@@ -138,6 +139,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here 
                     tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+		    print('debug part 4 ') 
                     #Fill in end
                 elif type == 0:
                     bytes = struct.calcsize("d")
@@ -145,13 +147,14 @@ def get_route(hostname):
                     #Fill in start
                     tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
-		    
+		    print('debug part 5 ') 
                     #Fill in end
                     return
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
                     print('error')
+		    print('debug part 6 ') 
                     break
                     #Fill in end
          
