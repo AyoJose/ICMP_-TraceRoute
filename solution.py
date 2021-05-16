@@ -125,13 +125,9 @@ def get_route(hostname):
             icmp_header = recvPacket[20:28] 
             type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-            
-            host_Name = socket.gethostbyaddr(destAddr) 
-                    #Fill in start
-			
-                    #Fill in end
-            if host_Name[0] == []:   #if the host does not provide a hostname
-                    #Fill in start
+            try: 
+                host_Name = socket.gethostbyaddr(destAddr) 
+            except: 
                 host_Name = 'hostname not returnable' 
                     #Fill in end
 			
