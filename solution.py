@@ -171,5 +171,5 @@ def get_route(hostname):
                 break
                     #Fill in end
          
-            finally:
-                mySocket.close()
+        #    finally:
+        mySocket.close()
