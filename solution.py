@@ -162,7 +162,7 @@ def get_route(hostname):
                     print('debug part 5 ')
                     print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0])) 
                     #Fill in end
-                    return
+                    #return
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
