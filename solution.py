@@ -99,7 +99,7 @@ def get_route(hostname):
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
-		print('debug part 2') 
+                print('debug part 2') 
                 if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
