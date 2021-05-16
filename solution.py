@@ -58,7 +58,7 @@ def build_packet():
         myChecksum = socket.htons(myChecksum) & oxffff
 	
     else: 
-        myChecksum = htons(myChecksum)
+        myChecksum = socket.htons(myChecksum)
 	
  
     packet = header + data
