@@ -74,12 +74,10 @@ def get_route(hostname):
         print('for loop starts here') 
         tracelist1 = [] 
         for tries in range(TRIES):
-            print('for loop starts here1') 
-            destAddr = socket.gethostbyname(hostname)
-            icmp = socket.getprotobyname("icmp") 
+            destAddr = socket.gethostbyname(hostname) 
             #Fill in start
             # Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW,icmp)	
+            mySocket = socket.socket(socket.AF_INET,socket.SOCK_RAW,socket.getprotobyname("icmp")	
             mySocket.bind(("",12000)); 
             #Fill in end
  
@@ -87,31 +85,31 @@ def get_route(hostname):
             mySocket.settimeout(TIMEOUT)
             print('debug part 1' ) 
             try:
-                #d = build_packet()
-		hello = 5 
-                #mySocket.sendto(d, (hostname, 0))
-                #t= time.time()
-                #startedSelect = time.time()
-                #whatReady = select.select([mySocket], [], [], timeLeft)
+                d = build_packet()
+		#hello = 5 
+                mySocket.sendto(d, (hostname, 0))
+                t= time.time()
+                startedSelect = time.time()
+                whatReady = select.select([mySocket], [], [], timeLeft)
                 #print(whatready) 		
-                #howLongInSelect = (time.time() - startedSelect)
-                #if whatReady[0] == []: # Timeout
+                howLongInSelect = (time.time() - startedSelect)
+                if whatReady[0] == []: # Timeout
                     #tracelist1=(tries,'*',"* * * Request timed out.")
-                    #print('*** Request timed out.') 
+                    print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #You should add the list above to your all traces list
                     #Fill in end
-                #recvPacket, addr = mySocket.recvfrom(1024)
-                #timeReceived = time.time()
-                #timeLeft = timeLeft - howLongInSelect
+                recvPacket, addr = mySocket.recvfrom(1024)
+                timeReceived = time.time()
+                timeLeft = timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
-                #if timeLeft <= 0:
+                if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #tracelist1=(tries,'*',"* * * Request timed out.")
-                    #print('*** Request timed out.') 
+                    print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #print('*** Request timed out.')
@@ -119,7 +117,6 @@ def get_route(hostname):
                     #Fill in end
                     #print('debug part 2.5') 
             except timeout:
-                print('debug 2.8') 
                 continue
  
             else:
@@ -129,40 +126,42 @@ def get_route(hostname):
                 icmp_header = recvPacket[20:28] 
                 type,code,checksum,pid,sequence = struct.unpack('bbHHh', icmp_header) 
                 #Fill in end
-                try:
-                    host_Name = socket.gethostbyaddr(destAddr) 
+                #try:
+                    #host_Name = socket.gethostbyaddr(destAddr) 
                     #Fill in start
 			
                     #Fill in end
-                except host_Name[0] == []:   #if the host does not provide a hostname
+                #except host_Name[0] == []:   #if the host does not provide a hostname
                     #Fill in start
-                    host_Name = 'hostname not returnable' 
+                    #host_Name = 'hostname not returnable' 
                     #Fill in end
 			
                 if type == 11:
                     bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 +
-                    bytes])[0]
+                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-                    tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
-                    print('debug part 3 ') 	
+                    #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    print('debug part 3 ') 
+                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))			
                     #Fill in end
                 elif type == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here 
-                    tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     print('debug part 4 ') 
+                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0]))
                     #Fill in end
                 elif type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
+                    #tracelist1.append('%d , %d, %struct, %s' %(ttl, (timeReceived - timeSent)*1000, addr[0]),host_Name)
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    print('debug part 5 ') 
+                    print('debug part 5 ')
+                    print('%d rtt= %.0f ms %s' %(ttl, (timeReceived - t)*1000, addr[0])) 
                     #Fill in end
                     return
                 else:
