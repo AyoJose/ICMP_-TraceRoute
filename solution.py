@@ -70,7 +70,7 @@ def get_route(hostname):
     tracelist2 = [] #This is your list to contain all traces
  
     for ttl in range(1,MAX_HOPS):
-
+        tracelist1 = [] 
         for tries in range(TRIES):
             destAddr = socket.gethostbyname(hostname)
             icmp = socket.getprotobyname("icmp") 
@@ -89,6 +89,7 @@ def get_route(hostname):
                 t= time.time()
                 startedSelect = time.time()
                 whatReady = select.select([mySocket], [], [], timeLeft)
+                print(whatready) 		
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
                     tracelist1.append("* * * Request timed out.")
@@ -100,13 +101,16 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 print('debug part 2') 
+		print(timeLeft) 
                 if timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     print('*** Request timed out.')
                     #You should add the list above to your all traces list
                     #Fill in end
+		    print('debug part 2.5') 
             except:
+		print('debug 2.8') 
                 continue
  
             else:
@@ -118,6 +122,7 @@ def get_route(hostname):
                 try:
                     host_Name = socket.gethostbyaddr(destAddr) 
                     #Fill in start
+			
                     #Fill in end
                 except host_Name[0] == []:   #if the host does not provide a hostname
                     #Fill in start
