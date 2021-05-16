@@ -103,7 +103,7 @@ def get_route(hostname):
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
-                timeLeft = timeLeft - howLongInSelect
+                #timeLeft = timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
                 #if timeLeft <= 0:
