@@ -168,7 +168,6 @@ def get_route(hostname):
                 tracelist2.extend(tracelist1) #This is your list to contain all traces	
 				
 		#Fill in end
-                return
             else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
