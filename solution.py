@@ -89,9 +89,9 @@ def get_route(hostname):
                 mySocket.sendto(d, (hostname, 0))
                 t= time.time()
                 startedSelect = time.time()
-                whatReady = select.select([mySocket], [], [], timeLeft)
+                whatReady = 10# select.select([mySocket], [], [], timeLeft)
                 #print(whatready) 		
-                howLongInSelect = (time.time() - startedSelect)
+                howLongInSelect = 10 #(time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
                     #tracelist1=(tries,'*',"* * * Request timed out.")
                     print('*** Request timed out.') 
@@ -101,7 +101,7 @@ def get_route(hostname):
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
-                timeLeft = timeLeft - howLongInSelect
+                timeLeft = 20 #timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
                 if timeLeft <= 0:
