@@ -66,12 +66,10 @@ def build_packet():
  
 def get_route(hostname):
     timeLeft = TIMEOUT
-    print('starting here;')
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
     icmp = socket.getprotobyname('icmp') 
     for ttl in range(1,MAX_HOPS):
-        print('for loop starts here') 
         tracelist1 = [] 
         for tries in range(TRIES):
             destAddr = socket.gethostbyname(hostname) 
@@ -82,20 +80,18 @@ def get_route(hostname):
  
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
-            print('debug part 1' ) 
             #try:
             d = build_packet()
 		#hello = 5 
             mySocket.sendto(d, (hostname, 0))
             t= time.time()
             startedSelect = time.time()
-            whatReady = select.select([mySocket], [], [], timeLeft)
-            print('debug in between') 		
+            whatReady = select.select([mySocket], [], [], timeLeft)	
             howLongInSelect =(time.time() - startedSelect)
             if whatReady[0] == []: # Timeout
-                tracelist1=(tries,'*',"* * * Request timed out.")
-                break		
+                tracelist1=(tries,'*',"* * * Request timed out.")		
                 print('*** Request timed out.') 
+		continue
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
                     #You should add the list above to your all traces list
@@ -109,7 +105,7 @@ def get_route(hostname):
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                  tracelist1=(tries,'*',"* * * Request timed out.")
-                 break
+                 continue
 		#print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
