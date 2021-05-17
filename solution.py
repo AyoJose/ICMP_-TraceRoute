@@ -91,7 +91,7 @@ def get_route(hostname):
             if whatReady[0] == []: # Timeout
                 tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
                 tracelist2.extend(tracelist1) 		
-                print('* * * Request timed out.') 
+                print(tries, ' Request timed out.') 
                 continue;
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
@@ -107,6 +107,7 @@ def get_route(hostname):
                     #Fill in start
                  tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
                  tracelist2.extend(tracelist1) 	
+                 print(tries, '** Request') 
                  continue;
 		#print('*** Request timed out.') 
                     #Fill in start
