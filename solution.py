@@ -89,6 +89,7 @@ def get_route(hostname):
             startedSelect = time.time()
             whatReady = select.select([mySocket], [], [], timeLeft)	
             howLongInSelect =(time.time() - startedSelect)
+            print(whatReady) 
             if whatReady[0] == []: # Timeout
                 tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
                 tracelist2.extend(tracelist1) 		
