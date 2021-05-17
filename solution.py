@@ -94,6 +94,7 @@ def get_route(hostname):
                 tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
                 tracelist2.extend(tracelist1) 		
                 print(tries, ' Request timed out.') 
+		return tracelist2
                 continue;
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
@@ -104,12 +105,13 @@ def get_route(hostname):
             timeLeft = timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
-            elif timeLeft <= 0:
+            timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                  tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
                  tracelist2.extend(tracelist1) 	
                  print(tries, '** Request') 
+		 return tracelist2 
                  continue;
 		#print('*** Request timed out.') 
                     #Fill in start
