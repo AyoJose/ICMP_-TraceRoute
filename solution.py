@@ -104,7 +104,7 @@ def get_route(hostname):
             timeLeft = timeLeft - howLongInSelect
                 #print('debug part 2') 
                 #print(timeLeft) 
-            if timeLeft <= 0:
+            elif timeLeft <= 0:
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                  tracelist1=(str(tries),str('*'),str("* * * Request timed out."))
@@ -121,7 +121,7 @@ def get_route(hostname):
             #except:
                 #continue
  
-            #else:
+            else:
             print('2.9') 
                 #Fill in start
                 #Fetch the icmp type from the IP packet
