@@ -72,8 +72,8 @@ def get_route(hostname):
     icmp = socket.getprotobyname('icmp') 
     for ttl in range(1,MAX_HOPS):
         print('for loop starts here') 
-        tracelist1 = [] 
         for tries in range(TRIES):
+	    tracelist1=[]
             destAddr = socket.gethostbyname(hostname) 
             #Fill in start
             # Make a raw socket named mySocket
