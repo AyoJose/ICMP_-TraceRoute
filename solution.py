@@ -72,6 +72,7 @@ def get_route(hostname):
     for ttl in range(1,MAX_HOPS):
         tracelist1 = [] 
         for tries in range(TRIES):
+            tracelist1 = [] 
             destAddr = socket.gethostbyname(hostname) 
             #Fill in start
             # Make a raw socket named mySocket
