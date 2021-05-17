@@ -95,13 +95,14 @@ def get_route(hostname):
             recvPacket, addr = mySocket.recvfrom(1024)
             timeReceived = time.time()
             timeLeft = timeLeft - howLongInSelect
-            if timeLeft <= 0:
+            if timeLeft <= 0 or whatReady[0] == []: # Timeout :
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                 tracelist1=(tries,'*',"* * * Request timed out.")
+		tracelist2.extend(tracelist1) 
                 	
-            elif whatReady[0] == []: # Timeout
-                tracelist1=(tries,'*',"* * * Request timed out.")	
+            #elif whatReady[0] == []: # Timeout
+                #tracelist1=(tries,'*',"* * * Request timed out.")	
                 print('*** Request timed out.') 
                     #Fill in start
                     #tracelist2 = tracelist2.append(tracelist1) 
